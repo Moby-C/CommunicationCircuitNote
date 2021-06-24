@@ -1,0 +1,324 @@
+\chapter{高频小信号放大器}
+
+\section{概述}
+
+高频小信号放大器的特点：放大高频小信号（中心频率在几百kHz到几百 MHz，频谱宽度在几 kHz 到几十 MHz 的范围内）的放大器。
+
+\subsection{高频小信号放大器的分类}
+
+\begin{equation}
+    \notag
+    \text{高频小信号放大器} \left\{
+        \begin{array}{l}
+            \text{谐振放大器（窄带）} \left\{
+                \begin{array}{l}
+                    \text{单振荡回路} \\
+                    \text{耦合振荡回路}
+                \end{array}
+            \right. \\
+            \text{非谐振放大器（宽带）} \left\{
+                \begin{array}{l}
+                    \text{LC集中滤波器} \\
+                    \text{石英晶体滤波器} \\
+                    \text{陶瓷滤波器} \\
+                    \text{声表面波滤波器}
+                \end{array}
+            \right.
+        \end{array}
+    \right.
+\end{equation}
+
+\subsection{高频小信号放大器的主要质量指标}
+
+\subsubsection{增益（放大系数）}
+
+高频小信号放大器的电压增益及分贝表示：
+
+\begin{equation}
+    A_v = \frac{V_o}{V_i}, \quad A_v = 20 \log{\frac{V_o}{V_i}}
+\end{equation}
+
+高频小信号放大器的功率增益及分贝表示：
+
+\begin{equation}
+    A_p = \frac{P_o}{P_i}, \quad A_p = 10 \log{\frac{P_o}{P_i}}
+\end{equation}
+
+\subsubsection{通频带}
+
+高频小信号放大器的通频带为：
+
+\begin{equation}
+    2\Delta \omega_{0.7} = \frac{\omega_0}{Q_L}, \quad 2\Delta f_{0.7} = \frac{f_0}{Q_L}
+\end{equation}
+
+\subsubsection{选择性}
+
+从各种不同频率信号的总和（有用的和有害的）中选出有用信号，抑制干扰信号的能力称为放大器的选择性。选择性常采用矩形系数和抑制比来表示。
+
+\subsubsection{矩形系数}
+
+矩形系数表示与理想滤波特性的接近程度，定义为：
+
+\begin{equation}
+    K_{r0.1} = \frac{B_{0.1}}{B_{0.7}} = \frac{2 \Delta f_{0.1}}{2 \Delta f_{0.7}} = \sqrt{10^2 - 1}
+\end{equation}
+
+\subsubsection{抑制比}
+
+表示对某个干扰信号 $f_n$ 的抑制能力，定义为：
+
+\begin{equation}
+    d_n = \frac{A_{v_0}}{A_{v_n}}
+\end{equation}
+
+其中 $A_{v_0}$ 为 $f_0$ 点输出电压，$A_{v_n}$ 为 $f_n$ 点输出电压。
+
+\subsubsection{工作稳定性}
+
+工作稳定性是指放大器的工作状态(直流偏置)、晶体管参数、电路元件参数等发生可能的变化时，放大器的主要特性的稳定。
+
+\subsection{高频小信号放大器的分析方法}
+
+晶体管工作在线性区，可看成线性元件，可用有源四端网络参数微变等效电路来分析。
+
+\section{晶体管高频小信号等效电路与参数}
+
+\subsection{形式等效电路（网络参数等效电路）}
+
+双口网络的输入导纳、反向传输导纳、正向传输导纳、输出导纳分别为：
+
+\begin{equation}
+    y_i = \left. \frac{\dot{I_1}}{\dot{V_1}} \right|_{\dot{V_2} = 0}, \quad 
+    y_r = \left. \frac{\dot{I_1}}{\dot{V_2}} \right|_{\dot{V_1} = 0}, \quad 
+    y_f = \left. \frac{\dot{I_2}}{\dot{V_1}} \right|_{\dot{V_2} = 0}, \quad 
+    y_o = \left. \frac{\dot{I_2}}{\dot{V_2}} \right|_{\dot{V_1} = 0}
+\end{equation}
+
+晶体管共发射极放大电路与 $y$ 参数等效电路：
+
+晶体管共发射极放大电路的输入导纳、输出导纳、电压增益分别为：
+
+\begin{equation}
+    Y_i = y_{ie} - \frac{y_{re}y_{fe}}{y_{oe} + Y_L}, \quad 
+    Y_o = y_{oe} - \frac{y_{re}y_{fe}}{y_{ie} + Y_S}, \quad 
+    \dot{A}_v = \frac{\dot{A}_2}{\dot{A}_1} = - \frac{y_{fe}}{y_{oe} + Y_L}
+\end{equation}
+
+$y_{fe}$ 越大，表示晶体管的放大能力越强；$y_{re}$ 越大，表示晶体管的内部反馈越强。$y_{re}$ 是谐振放大器自激的根源，应尽可能使其减小。   
+
+$y$ 参数的优点：各个元件在很宽的频率范围内都保持常数。
+
+$y$ 参数的缺点：会随频率变化，物理含义不明显，分析电路不够方便。
+
+\subsection{混合 $\pi$ 等效电路}
+
+混合 $\pi$ 等效电路：
+
+
+
+\subsection{混合 $\pi$ 等效电路参数与形式等效电路 $y$ 参数的转换}
+
+对于共发射极放大电路，合 $\pi$ 等效电路参数与形式等效电路 $y$ 参数的转换方式为：
+
+\begin{equation}
+\begin{aligned}
+    y_i &= \left. \frac{\dot{I_1}}{\dot{V_1}} \right|_{\dot{V_2} = 0} = g_{ie} + \text{j}\omega C_{ie} \approx g_{b'e} + \text{j}\omega (C_{b'e} + C_{b'c}) \\
+    y_r &= \left. \frac{\dot{I_1}}{\dot{V_2}} \right|_{\dot{V_1} = 0} = g_{oe} + \text{j}\omega C_{oe} \approx g_{ce} + \text{j}\omega C_{b'c} \\
+    y_f &= \left. \frac{\dot{I_2}}{\dot{V_1}} \right|_{\dot{V_2} = 0} \approx \frac{g_m}{1 + \text{j}\omega (C_{b'e} + C_{b'c})r_{bb'}} \approx g_m \\
+    y_o &= \left. \frac{\dot{I_2}}{\dot{V_2}} \right|_{\dot{V_1} = 0} \approx - \frac{\text{j}\omega C_{b'c}}{1 + \text{j}\omega C_{b'e} r_{bb'}} \approx - \text{j}\omega C_{b'c}
+\end{aligned}
+\end{equation}
+
+\subsection{晶体管的高频参数}
+
+\subsubsection{截止频率 $f_{\beta}$}
+
+截止频率是 $\beta$ 下降到低频值 $\beta_0$ 的 $\frac{1}{2}$ 时所对应的频率。
+
+\begin{equation}
+    \dot{\beta} = \frac{\beta_0}{ 1 + \text{j} \frac{f}{f_{\beta}} }, \quad \beta = \frac{\beta_0}{ \sqrt{1 + \left(\frac{f}{f_{\beta}}\right)^2 } }
+\end{equation}
+
+\subsubsection{特征频率 $f_T$}
+
+$\beta = 1$ 时所对应的频率。
+
+\begin{equation}
+    f_T = f_{\beta} \sqrt{\beta_0^2 - 1} \approx \beta_0 f_{\beta} 
+\end{equation}
+
+当 $f > f_T$ 时，共发接法的晶体管将不再有电流放大能力，但仍可能有电压增益，而功率增益还可能大于 $1$。
+
+当 $f >> f_T$ 时，可以使用 $\beta f \approx f_T$ 粗略计算电流放大系数。
+
+\subsubsection{最高振荡频率 $f_{\text{max}}$}
+
+晶体管功率增益 $G_p = 1$ 时所对应的频率。
+
+$f>f_{\text{max}}$ 时，晶体管不能得到功率放大。也不能产生振荡。
+
+\section{单调谐回路谐振放大器}
+
+通常需要多级放大器来提供足够高的增益和足够好的选择性，从而为下一级（例如混频和检波）提供性能良好的有用信号。
+
+\subsection{高频小信号放大器分析方法}
+
+高频小信号放大器的电路分析包括：多级分单级、静态分析、动态分析、整合系统四个基本步骤。
+
+\subsubsection{多级分单级}
+
+前级放大器是本级放大器的信号源；后级放大器是本级放大器的负载。
+
+\subsubsection{静态分析}
+
+画出直流等效电路，交流输入信号为零；所有电容开路；所有电感短路。
+
+\subsubsection{动态分析}
+
+画出交流等效电路，有交流输入信号，所有直流量为零；所有大电容短路；所有大电感开路。（谐振回路L、C保留。）
+
+画出交流小信号等效电路。
+
+\subsection{电压增益}
+
+谐振时的电压增益：
+
+\begin{equation}
+    A_{v_0} = - \frac{p_1 p_2 y_{\text{fe}}}{G_P'} 
+    = - \frac{p_1 p_2 y_{\text{fe}}}{G_P + p_1^2 g_{\text{oe}1} + p_2^2 g_{\text{ie}2}}
+\end{equation}
+
+其中接入系数 $p_1 = \dfrac{N_1}{N}$，$p_2 = \dfrac{N_2}{N}$。
+
+阻抗匹配时，可获得最大的电压增益为：
+
+\begin{equation}
+    (\dot{A}_{v_0})_{\text{max}} = - \frac{y_{\text{fe}}}{2\sqrt{g_{\text{o}1} g_{\text{i}2}}}
+\end{equation}
+
+\subsection{功率增益}
+
+谐振时的功率增益：
+
+\begin{equation}
+    A_{p_0} = (A_{p_0})^2 \frac{g_{\text{i}2}}{g_{\text{i}1}}
+\end{equation}
+
+阻抗匹配时，可获得最大的功率增益为：
+
+\begin{equation}
+    (A_{p_0})_{\text{max}} = \frac{|y_{\text{fe}}|^2}{4 g_{\text{o}1} g_{\text{i}2}}
+\end{equation}
+
+若考虑谐振回路损耗，其插入损耗为：
+
+\begin{equation}
+    K_1 = \left(\frac{1}{1 - \frac{Q_L}{Q_0}}\right)^2
+\end{equation}
+
+匹配最大功率增益：
+
+\begin{equation}
+    (A_{p_0})_{\text{max}} = \frac{|y_{\text{fe}}|^2}{4 g_{\text{o}1} g_{\text{i}2}} \left(1 - \frac{Q_L}{Q_0}\right)^2
+\end{equation}
+
+电压增益为：
+
+\begin{equation}
+    (A_{v_0})_{\text{max}} = - \frac{|y_{\text{fe}}|}{2\sqrt{g_{\text{o}1} g_{\text{i}2}}} \left(1 - \frac{Q_L}{Q_0}\right)
+\end{equation}
+
+\subsection{通频带与选择性}
+
+单调谐回路谐振放大器通频带为：
+
+\begin{equation}
+    2 \Delta f_{0.7} = \frac{f_0}{Q_L}
+\end{equation}
+
+选择性用矩形系数表示，即：
+
+\begin{equation}
+    K_{r0.1} = \frac{2 \Delta f_{0.1}}{2 \Delta f_{0.7}}
+\end{equation}
+
+\subsection{级间耦合网络}
+
+图：单调谐放大器的级间耦合网络形式
+
+\section{多级单调谐回路谐振放大器}
+
+如果各级放大器是由完全相同，则总增益为：
+
+\begin{equation}
+    \dot{A}_{v} = \prod{\dot{A}_{v_n}} = \left(\dot{A}_{v_1}\right)^n
+\end{equation}
+
+通频带为：
+
+\begin{equation}
+    2 \Delta f_{0.7} = \sqrt{2^{\frac{1}{n}} - 1} \frac{f_0}{Q_0}
+\end{equation}
+
+矩形系数为：
+
+\begin{equation}
+    K_{r0.1} = \sqrt{\frac{100^{\frac{1}{n}} - 1}{2^{\frac{1}{n}} - 1}}
+\end{equation}
+
+\section{双调谐回路谐振放大器}
+
+临界耦合 ($\eta = 1$) 时，有：
+
+\begin{equation}
+    \frac{A_v}{A_{v_0}} = \frac{2}{\sqrt{4 + \xi^4}}
+\end{equation}
+
+其中 $\xi = Q_L \dfrac{2 \Delta f}{f_0}$。
+
+临界耦合时的通频带：
+
+\begin{equation}
+    2 \Delta f_{0.7} = \sqrt{2} \frac{f_0}{Q_L}
+\end{equation}
+
+矩形系数为：
+
+\begin{equation}
+    K_{r0.1} = \sqrt[4]{\frac{100^{\frac{1}{n}} - 1}{2^{\frac{1}{n}} - 1}}
+\end{equation}
+
+\section{谐振放大器的稳定性与稳定措施}
+
+\subsection{谐振放大器的稳定性}
+
+放大器的输入和输出导纳：
+
+\begin{equation}
+    Y_i = y_{ie} - \frac{y_{re}y_{fe}}{y_{oe} + Y_L}, \quad 
+    Y_o = y_{oe} - \frac{y_{re}y_{fe}}{y_{ie} + Y_S}
+\end{equation}
+
+自激振荡：$g_{\Sigma} = g_s+ g_{ie} + g_F = 0$，即整个回路的能量消耗为零，回路中储存的能量恒定，在电感与电容之间相互转换，回路中的等幅振荡得以维持，而不需外加激励。
+
+如果反馈电导为负值，则可能发生自激振荡现象。
+
+自激产生的条件：幅值条件、相位条件。
+
+稳定系数：
+
+\begin{equation}
+    S = \frac{(g_s + g_{ie})(g_{oe} + g_L)(1 + \xi^2)}{|y_{fe}||y_{re}|}
+\end{equation}
+
+如果稳定系数 $S = 1$，放大器可能产生自激振荡。$S$ 越大，放大器工作就越稳定。
+
+\subsection{单向化}
+
+避免自激的做法有中和法和失配法。
+
+失配法：信号源内阻不与晶体管输入阻抗匹配；晶体管输出端负载阻抗不与本级晶体管的输出阻抗匹配。
+
+失配法以牺牲增益为代价换取稳定性的提高。
+

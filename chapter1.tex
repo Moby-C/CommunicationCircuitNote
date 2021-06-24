@@ -1,0 +1,221 @@
+\chapter{选频网络}
+
+\section{串联谐振回路}
+
+\subsection{基本原理}
+
+电感等效为理想电感 L 和损耗电阻 R 的串联；电容等效为理想电容 C 和损耗电阻 R 的并联。电容的损耗电阻损耗一般忽略不计。
+
+单振荡回路：由电感和电容组成的单个振荡电路。
+
+串联振荡回路：信号源与电容和电感串接构成的振荡回路。
+
+串联谐振回路的带通特性要求信号源内阻越低越好。
+
+串联振荡回路的阻抗：
+
+\begin{equation}
+    Z = R + \text{j}X, \quad X = \omega_0 L - \frac{1}{\omega_0 C}
+\end{equation}
+
+串联单振荡回路的谐振特性：其阻抗在某一特定频率上具有最小值（谐振状态），而偏离此频率时将迅速增大。
+
+串联振荡回路的谐振条件：
+
+\begin{equation}
+    X = \omega_0 L - \frac{1}{\omega_0 C} = 0, \quad \omega_0 = \frac{1}{\sqrt{LC}}, \quad f_0 = \frac{1}{2\pi \sqrt{LC}}
+\end{equation}
+
+阻抗性质随频率变化的规律：
+
+(1) $\omega < \omega_0, X < 0$，呈容性。
+
+(2) $\omega = \omega_0, X = 0$，呈纯阻性。
+
+(3) $\omega > \omega_0, X > 0$，呈感性。
+
+串联振荡回路的品质因数：
+
+\begin{equation}
+    Q = \frac{\omega_0 L}{R} = \frac{1}{\omega_0 C R}
+\end{equation}
+
+若信号源为电压源，串联单振荡回路谐振时回路阻抗最小（$Z = R$）、回路电流最大，具有带通选频特性。
+
+串联谐振时，电感和电容两端的电压的模大小相等，且等于外加电压的 $Q$ 倍。
+
+\subsection{串联振荡回路的谐振曲线和通频带}
+
+回路中电流幅值与外加电压频率之间的关系曲线称为谐振曲线。串联振荡回路的谐振曲线的函数为：
+
+\begin{equation}
+    \dot{N}(\omega) = \frac{R}{R + \text{j}(\omega L - \frac{1}{\omega C})} = \frac{1}{1 + \text{j} Q \left( \frac{\omega}{\omega_0} - \frac{\omega_0}{\omega} \right) } = N(\omega) \text{e}^{\text{j} \psi(\omega)}
+\end{equation}
+
+其中 $N(\omega)$ 表示幅频特性， $\psi(\omega)$ 表示相频特性。
+
+\subsubsection{频率选择性}
+
+频率 $\omega$ 偏离 $\omega_0$ 越远， $N(\omega)$ 下降地越快。
+
+失谐量：表示频率偏离谐振的程度，$\Delta \omega = \omega - \omega_0$。
+
+对于同样的频率 $\omega$ 和 $\omega_0$ ，回路的 $Q$ 值越大， $N(\omega)$ 下降地越快，谐振曲线越尖锐，回路的选择性就越好。
+
+广义失谐量：
+
+\begin{equation}
+    \xi = \frac{X}{R} = Q \left( \frac{\omega}{\omega_0} - \frac{\omega_0}{\omega} \right)
+\end{equation}
+
+失谐不大（$\omega \approx \omega_0$）时：
+
+\begin{equation}
+    \xi \approx Q \frac{2\Delta \omega}{\omega_0} = Q \frac{2\Delta f}{f_0}
+\end{equation}
+
+幅频特性函数 $N(\xi)$ 为：
+
+\begin{equation}
+    N(\xi) = \frac{1}{\sqrt{1 + \xi^2}}
+\end{equation}
+
+\subsubsection{通频带}
+
+串联单振荡回路的通频带为：
+
+\begin{equation}
+    2\Delta \omega_{0.7} = \frac{\omega_0}{Q}, \quad 2\Delta f_{0.7} = \frac{f_0}{Q}
+\end{equation}
+
+\subsection{串联振荡回路的相位特性曲线}
+
+串联振荡回路的相位特性曲线的函数为：
+
+\begin{equation}
+    \psi = -\arctan{Q \left( \frac{\omega}{\omega_0} - \frac{\omega_0}{\omega} \right) } = -\arctan{\xi}
+\end{equation}
+
+\section{并联谐振回路}
+
+\subsection{基本原理和特性}
+
+信号源为电流源（工作于放大区晶体管、场效应管等）时，宜采用并联谐振回路。
+
+并联振荡回路的阻抗：
+
+\begin{equation}
+    Z = \frac{ \left( R + \text{j} \omega L \right) \frac{1}{\text{j} \omega C} }{ R + \text{j} \omega L + \frac{1}{\text{j} \omega C}}
+    = \frac{ \left( R + \text{j} \omega L \right) \frac{1}{\text{j} \omega C} }{ R + \text{j} \left( \omega L - \frac{1}{ \omega C } \right) }
+    \approx \frac{\frac{L}{C}}{ R + \text{j} \left( \omega L - \frac{1}{ \omega C } \right) }
+    = \frac{1}{ \frac{CR}{L} + \text{j} \left( \omega C - \frac{1}{ \omega L } \right) }
+\end{equation}
+
+并联振荡回路的导纳：
+
+\begin{equation}
+    Y = G + \text{j}B, \quad G = \frac{CR}{L}, \quad B = \omega C - \frac{1}{ \omega L }
+\end{equation}
+
+并联振荡回路的谐振特性：其导纳在某一特定频率上具有最小值（谐振状态），而偏离此频率时将迅速增大。
+
+并联振荡回路的谐振条件：
+
+\begin{equation}
+    B = \omega_p C - \frac{1}{\omega_p L} = 0, \quad \omega_p = \frac{1}{\sqrt{LC}}, \quad f_p = \frac{1}{2\pi \sqrt{LC}}
+\end{equation}
+
+阻抗性质随频率变化的规律：
+
+(1) $\omega < \omega_p, B < 0$，呈感性。
+
+(2) $\omega = \omega_p, B = 0$，呈纯阻性。
+
+(3) $\omega > \omega_p, B > 0$，呈容性。
+
+若信号源为电流源，并联振荡回路谐振时回路阻抗最大（$R_p = \frac{1}{G} = \frac{L}{CR}$）、回路电压最大，具有带通选频特性。
+
+并联谐振时，流经电感和电容的电流的模大小相近，方向相反，且约为外加电流的 $Q$ 倍。
+
+\subsection{并联振荡回路的谐振曲线、相位特性曲线和通频带}
+
+并联振荡回路的谐振曲线的函数为：
+
+\begin{equation}
+    \dot{N}(\omega) = \frac{G_p}{G_p + \text{j}(\omega C - \frac{1}{\omega L})} = \frac{1}{1 + \text{j} Q_p \left( \frac{\omega}{\omega_p} - \frac{\omega_p}{\omega} \right) } = N(\omega) \text{e}^{\text{j} \psi(\omega)}
+\end{equation}
+
+其中 $N(\omega)$ 表示幅频特性， $\psi(\omega)$ 表示相频特性。
+
+串联振荡回路与并联振荡回路互偶。
+
+\subsection{信号源内阻和负载电阻的影响}
+
+考虑信号源内阻 $Rs$ 和负载电阻 $RL$ 后，由于回路总的损耗增大，回路 $Q$ 值将下降，称为等效品质因数：
+
+\begin{equation}
+    Q_L = \frac{1}{\omega_p L \left( G_p + G_s + G_L \right) }
+    = \frac{Q_p}{1 + \frac{R_p}{R_s} + \frac{R_p}{R_L}}
+\end{equation}
+
+$Q_L$ 值低于 $Q_p$，因此考虑信号源内阻及负载电阻后，并联谐振回路的选择性变坏，通频带加宽。
+
+\subsection{低Q值的并联谐振回路}
+
+$Q$ 值较低时，电路总的阻抗 $Z$ 的最大值与纯阻不是同时发生。
+
+并联谐振回路的谐振频率：
+
+\begin{equation}
+    \omega_p = \sqrt{\frac{1}{LC} - \left(\frac{R}{L}\right)^2}
+\end{equation}
+
+\section{串、并联阻抗的等效互换与回路抽头时的阻抗变换}
+
+\subsection{串、并联阻抗的等效互换}
+
+串、并联阻抗的等效互换公式：
+
+\begin{equation}
+\begin{aligned}
+    R_s = \frac{R_p X_p^2}{R_p^2 + X_p^2}, \quad X_s = \frac{R_p^2 X_p}{R_p^2 + X_p^2} \\
+    R_p = \frac{R_s^2 + X_s^2}{R_s}, \quad X_p = \frac{R_s^2 + X_s^2}{X_s}
+\end{aligned}
+\end{equation}
+
+考虑串并联电路的的品质因数应该相等，有：
+
+\begin{equation}
+    R_p = \left(1 + Q_L^2\right) R_s, \quad X_p = \left(1 + \frac{1}{Q_L^2} \right) X_s
+\end{equation}
+
+当品质因数足够高时，小的串联电阻变为大的并联电阻，串联电抗变为同性质的并联电抗。即：
+
+\begin{equation}
+    R_p \approx Q_L^2 R_s, \quad X_p \approx X_s
+\end{equation}
+
+\subsection{并联谐振回路的其他形式}
+
+对于高 $Q$ 值并联谐振回路，其谐振频率与串联谐振回路相近，谐振阻抗可以通过串联支路的串并联互换得到。
+
+\subsection{抽头式并联电路的阻抗变换}
+
+为了减小信号源或负载电阻对谐振回路的影响，信号源或负载电阻不是直接接入回路，而是经过一些简单的变换电路，将它们部分接入回路。常用的电路形式有变压器耦合连接、自耦变压器抽头电路和双电容抽头电路。
+
+\section{耦合回路}
+
+常用的两种耦合回路：
+
+(1) 初级回路：与信号源相接的回路；
+
+(2) 次级回路：与负载相接的回路。
+
+\section{滤波器的其他形式}
+
+LC型滤波器的品质因数一般在100~200，石英谐振器的品质因数可达几万甚至几百万，因而可以构成工作频率稳定度极高、阻带衰减特性很陡峭、通带衰减很小的滤波器。
+
+在石英晶体两个管脚加交变电场时，它将会产生一定频率的机械变形，而这种机械振动又会产生交变电场，上述物理现象称为压电效应。当交变电场的频率为某一特定值时，机械振动和交变电场的振幅骤然增大，产生共振，称之为压电振荡。
+
+石英片的振动会产生奇次（$2n-1$）谐波的泛音振动。基频振动模式时，产生奇次谐波谐振的支路因阻抗较高可忽略。
+
